@@ -1,0 +1,32 @@
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="p-3">
+    <div class="mb-3">
+      <label for="fullName" class="form-label">Full Name</label>
+      <input id="fullName" formControlName="fullName" name="fullName" class="form-control" />
+      <div *ngIf="contactForm.controls['fullName'].invalid && contactForm.controls['fullName'].touched" class="text-danger">
+        Full Name is required and must contain only letters and spaces.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input id="email" formControlName="email" name="email" class="form-control" />
+      <div *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched" class="text-danger">
+        Email is required and must be a valid email address.
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input id="phone" formControlName="phone" name="phone" class="form-control" />
+      <div *ngIf="contactForm.controls['phone'].invalid && contactForm.controls['phone'].touched" class="text-danger">
+        Phone number must be in a valid format.
+      </div>
+    </div>
+  
+    <div class="mb-3 form-check">
+      <input id="isFavorite" type="checkbox" formControlName="isFavorite" name="isFavorite" class="form-check-input" />
+      <label for="isFavorite" class="form-check-label">Is Favorite</label>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Save</button>
+  </form>

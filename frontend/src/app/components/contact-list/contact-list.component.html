@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <button class="btn btn-primary" (click)="addNewContact()">Add Contact</button>
+  
+  <hr>
+  
+    <h2>Contact List</h2>
+    <table class="table table-bordered table-hover mt-3">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Favorite</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{ contact.fullName }}</td>
+          <td>{{ contact.email }}</td>
+          <td>{{ contact.phone }}</td>
+          <td>
+            <span class="badge" [ngClass]="{
+              'bg-success': contact.isFavorite,
+              'bg-secondary': !contact.isFavorite
+            }">
+              {{ contact.isFavorite ? 'Yes' : 'No' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-warning" (click)="editMode = contact">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteContact(contact.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="isAddContactFormVisible">
+        <h2>{{ editMode ? 'Edit' : 'Add' }} Contact</h2>
+        <app-contact-form
+          [contact]="editMode ? editMode : newContact"
+          (save)="editMode ? updateContact($event) : saveContact($event)">
+        </app-contact-form>
+      </div>
+  </div>
