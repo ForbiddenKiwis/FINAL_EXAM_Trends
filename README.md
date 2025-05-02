@@ -33,9 +33,9 @@ Each question is worth 0.5 points. Total: **10 points**
 
 1. Which file is used to define how a Docker image is built?  
    - A) `docker-compose.yml`  
-   - _B) `Dockerfile`_  
+   - **B) `Dockerfile`** ✅  
    - C) `image.config`  
-   - D) `container.yml`  
+   - D) `container.yml`
 
 2. What does `docker images` command show?  
    - A) Current containers  
