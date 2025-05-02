@@ -36,18 +36,16 @@ export class ContactListComponent implements OnInit {
 
   saveContact(contact: Contact): void {
     if (this.editMode) {
-      this.contactService.updateContact(contact.id, contact)
-        .subscribe(updated => {
-          const i = this.contacts.findIndex(c => c.id === updated.id);
-          this.contacts[i] = updated;
-          this.resetForm();
-        });
+      this.contactService.updateContact(contact.id, contact).subscribe(() => {
+        const i = this.contacts.findIndex(c => c.id === contact.id);
+        this.contacts[i] = contact;
+        this.resetForm();
+      });
     } else {
-      this.contactService.createContact(contact)
-        .subscribe(created => {
-          this.contacts.push(created);
-          this.resetForm();
-        });
+      this.contactService.createContact(contact).subscribe(created => {
+        this.contacts.push(created);
+        this.resetForm();
+      });
     }
   }
 

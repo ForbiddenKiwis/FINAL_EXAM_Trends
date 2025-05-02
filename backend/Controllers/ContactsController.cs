@@ -37,12 +37,11 @@ namespace ContactApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateContact(int id, Contact updatedContact)
-        {
-            if (id != updatedContact.ID) return BadRequest();
-            _context.Entry(updatedContact).State = EntityState.Modified;
+        public async Task<ActionResult<Contact>> PutContact(int id, Contact contact) {
+            if (id != contact.Id) return BadRequest();
+            _context.Entry(contact).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return NoContent();
+            return Ok(contact);
         }
 
         [HttpDelete("{id}")]

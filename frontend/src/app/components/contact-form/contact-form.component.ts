@@ -35,7 +35,8 @@ export class ContactFormComponent implements OnChanges {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      this.save.emit(this.contactForm.value); 
+      const value = { ...this.contactForm.value };
+      this.save.emit(value); 
       this.contactForm.reset();  
     }
   }
