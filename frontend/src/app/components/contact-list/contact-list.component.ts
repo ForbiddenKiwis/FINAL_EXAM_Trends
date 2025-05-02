@@ -35,10 +35,20 @@ export class ContactListComponent implements OnInit {
   }
 
   saveContact(contact: Contact): void {
-    this.contactService.createContact(contact).subscribe((newContact) => {
-      this.contacts.push(newContact);  
-      this.isAddContactFormVisible = false;  
-    });
+    if (this.editMode) {
+      this.contactService.updateContact(contact.id, contact)
+        .subscribe(updated => {
+          const i = this.contacts.findIndex(c => c.id === updated.id);
+          this.contacts[i] = updated;
+          this.resetForm();
+        });
+    } else {
+      this.contactService.createContact(contact)
+        .subscribe(created => {
+          this.contacts.push(created);
+          this.resetForm();
+        });
+    }
   }
 
   updateContact(contact: Contact): void {
@@ -56,7 +66,17 @@ export class ContactListComponent implements OnInit {
 
   editContact(contact: Contact): void {
     this.editMode = contact;
-    this.newContact = { ...contact };  
+    this.newContact = { ...contact }; 
     this.isAddContactFormVisible = true; 
+  }
+
+  closeForm(): void {
+    this.isAddContactFormVisible = false; // Close form when user clicks the close button
+  }
+
+  private resetForm() {
+    this.isAddContactFormVisible = false;
+    this.editMode = null;
+    this.newContact = { id: 0, fullName: '', email: '', phone: '', isFavorite: false };
   }
 }

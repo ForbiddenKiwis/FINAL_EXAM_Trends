@@ -1,4 +1,9 @@
 <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="p-3">
+    
+    <div class="mb-3">
+        <input type="hidden" formControlName="id">
+    </div>
+
     <div class="mb-3">
       <label for="fullName" class="form-label">Full Name</label>
       <input id="fullName" formControlName="fullName" name="fullName" class="form-control" />
@@ -28,5 +33,8 @@
       <label for="isFavorite" class="form-check-label">Is Favorite</label>
     </div>
   
-    <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Save</button>
-  </form>
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">Close</button>
+      </div>  
+</form>

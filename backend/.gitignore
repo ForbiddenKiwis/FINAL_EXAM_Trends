@@ -22,8 +22,4 @@ Dockerfile
 .vscode/
 .idea/
 
-node_modules/
-
 .env
-
-docker-build/

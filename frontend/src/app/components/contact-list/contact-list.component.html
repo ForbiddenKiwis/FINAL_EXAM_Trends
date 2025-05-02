@@ -1,6 +1,14 @@
 <div class="container mt-4">
   <button class="btn btn-primary" (click)="addNewContact()">Add Contact</button>
   
+  <div *ngIf="isAddContactFormVisible">
+    <h2>{{ editMode ? 'Edit' : 'Add' }} Contact</h2>
+    <app-contact-form
+    [contact]="editMode ? editMode : newContact"
+      (save)="saveContact($event)"
+      (close)="closeForm()">
+    </app-contact-form>
+  </div>
   <hr>
   
     <h2>Contact List</h2>
@@ -28,18 +36,12 @@
             </span>
           </td>
           <td>
-            <button class="btn btn-sm btn-warning" (click)="editMode = contact">Edit</button>
+            <button class="btn btn-sm btn-warning" (click)="editContact(contact)">Edit</button>
             <button class="btn btn-sm btn-danger" (click)="deleteContact(contact.id)">Delete</button>
           </td>
         </tr>
       </tbody>
     </table>
   
-    <div *ngIf="isAddContactFormVisible">
-        <h2>{{ editMode ? 'Edit' : 'Add' }} Contact</h2>
-        <app-contact-form
-          [contact]="editMode ? editMode : newContact"
-          (save)="editMode ? updateContact($event) : saveContact($event)">
-        </app-contact-form>
-      </div>
+    
   </div>
