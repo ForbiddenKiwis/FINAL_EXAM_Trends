@@ -40,7 +40,7 @@ Each question is worth 0.5 points. Total: **10 points**
 2. What does `docker images` command show?  
    - A) Current containers  
    - B) Docker logs  
-   **- C) Downloaded images** 
+   - **C) Downloaded images** ✅
    - D) Running apps  
 
 3. How do you remove a Docker container?  
